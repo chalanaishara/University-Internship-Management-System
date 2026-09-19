@@ -1,5 +1,5 @@
-const calculate=(income,expense)=>{
-        return income-expense;
-}
+// const calculate=(income,expense)=>{
+//         return income-expense;
+// }
 
-document.write(calculate(1000,500));
+// console.log(calculate(1000,500));
