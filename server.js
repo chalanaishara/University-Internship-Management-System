@@ -5,6 +5,10 @@ const mongoose=require("mongoose");
 //const internships=require("./sample.js");
 const app=express();
 const Internship=require("./models/internship.js");
+const User=require("./models/user.js");
+const bcrypt=require("bcrypt");
+const jwt=require("jsonwebtoken");
+const protect=require("./middleware/authMiddleware.js");
 require("dotenv").config();
 
 app.use(express.json());
@@ -39,6 +43,16 @@ app.get("/api/internships/:id", async (req, res) => {
 });
 
 
+app.get("/api/auth/profile",protect,(req,res)=>{
+    res.json({
+        message:"You can access this protected route",
+        user:req.user
+    });
+
+});
+
+
+
 app.post("/api/internships",async(req,res)=>{
     try{
         const internship=await Internship.create(req.body);
@@ -64,6 +78,80 @@ app.delete("/api/internships/:id",async(req,res)=>{
     }catch(error){
         res.status(500).json({
             message:"failed to delete internship"
+        });
+    }
+});
+
+app.post("/api/auth/register",async(req,res)=>{
+    try{
+        const{name,email,password,role}=req.body;
+
+        const hashedpassword=await bcrypt.hash(password,10);
+
+        const user=await User.create({
+            name,
+            email,
+            password:hashedpassword,
+            role
+        });
+
+        res.status(201).json({
+            message:"User registered successfully",
+            user
+        });
+
+    }catch(error){
+        res.status(500).json({
+            message:"failed to register user",
+            Error:error.message
+        });
+    }
+});
+
+
+
+app.post("/api/auth/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({
+                message: "Invalid email or password"
+            });
+        }
+
+        const isPasswordCorrect = await bcrypt.compare(
+            password,
+            user.password
+        );
+
+        if (!isPasswordCorrect) {
+            return res.status(400).json({
+                message: "Invalid email or password"
+            });
+        }
+
+        const token = jwt.sign(
+            {
+                userId: user._id,
+                role: user.role
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: "1d"
+            }
+        );
+
+        res.json({
+            message: "Login successful",
+            token
+        });
+
+    } catch (error) {
+        res.status(500).json({
+            message: "Login failed"
         });
     }
 });
