@@ -1,7 +1,5 @@
 const Internship = require("../models/Internship");
 
-
-
 const createInternship = async (req, res) => {
     try {
         const internship = await Internship.create(req.body);
@@ -14,7 +12,6 @@ const createInternship = async (req, res) => {
         });
     }
 };
-
 
 
 const getInternships = async (req, res) => {

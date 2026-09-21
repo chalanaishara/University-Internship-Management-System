@@ -7,12 +7,14 @@ const app=express();
 const protect=require("./middleware/authMiddleware.js");
 const authRoutes=require("./routes/authRoutes.js");
 const internshipRoutes=require("./routes/internshipRoutes.js");
+const applicationRoutes=require("./routes/applicationRoutes.js");
 require("dotenv").config();
 
 app.use(express.json());
-
 app.use("/api/internships", internshipRoutes);
 app.use("/api/auth",authRoutes);
+app.use("/api/applications",applicationRoutes);
+
 
 
 app.get("/api/auth/profile",protect,(req,res)=>{
