@@ -4,6 +4,7 @@ import Home from "../pages/Home.jsx";
 import Register from "../pages/Register.jsx";
 import Login from "../pages/Login.jsx";
 import Navbar from "./components/navbar.jsx";
+import InternshipDetails from "../pages/InternshipDetails.jsx";
 
 function App() {
     return (
@@ -25,6 +26,11 @@ function App() {
                 <Route
                     path="/register"
                     element={<Register/>}
+                />
+
+                <Route
+                    path="/internship/:id"
+                    element={<InternshipDetails/>}
                 />
 
             </Routes>

@@ -2,6 +2,7 @@ const dns = require('dns');
 dns.setServers(['8.8.8.8', '1.1.1.1']);
 
 const express=require("express");
+const cors=require("cors");
 const mongoose=require("mongoose");
 const app=express();
 const protect=require("./middleware/authMiddleware.js");
@@ -10,6 +11,7 @@ const internshipRoutes=require("./routes/internshipRoutes.js");
 const applicationRoutes=require("./routes/applicationRoutes.js");
 require("dotenv").config();
 
+app.use(cors());
 app.use(express.json());
 app.use("/api/internships", internshipRoutes);
 app.use("/api/auth",authRoutes);
