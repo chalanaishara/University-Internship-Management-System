@@ -24,7 +24,7 @@ const getMyApplications = async (req, res) => {
     try {
         const applications = await Application.find({
             student: req.user.userId
-        });
+        }).populate("internship");;
 
         res.json(applications);
 
@@ -39,7 +39,7 @@ const getApplicants = async (req, res) => {
     try {
         const applications = await Application.find({
             internship: req.params.internshipId
-        });
+        }).populate("student");
 
         res.json(applications);
 
