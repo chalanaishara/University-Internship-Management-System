@@ -27,33 +27,47 @@ function MyApplications() {
     }, []);
 
     return (
-        <div>
+        <div className="min-h-screen bg-gray-100 p-8">
 
-            <h1>My Applications</h1>
+            <h1 className="text-3xl font-bold mb-6">
+                My Applications
+            </h1>
 
-            {applications.map(application => (
+            <div className="grid gap-4">
 
-                <div key={application._id}>
+                {applications.map(application => (
 
-                    <h2>
-                        {application.internship.title}
-                    </h2>
+                    <div
+                        key={application._id}
+                        className="bg-white p-6 rounded-xl shadow"
+                    >
 
-                    <p>
-                        Company: {application.internship.company}
-                    </p>
+                        <h2 className="text-xl font-semibold mb-2">
+                            {application.internship.title}
+                        </h2>
 
-                    <p>
-                        Location: {application.internship.location}
-                    </p>
+                        <p className="text-gray-600">
+                            Company: {application.internship.company}
+                        </p>
 
-                    <p>
-                        Status: {application.status}
-                    </p>
+                        <p className="text-gray-600">
+                            Location: {application.internship.location}
+                        </p>
 
-                </div>
+                        <p className="mt-4">
+                            Status:
 
-            ))}
+                            <span className="ml-2 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
+                                {application.status}
+                            </span>
+
+                        </p>
+
+                    </div>
+
+                ))}
+
+            </div>
 
         </div>
     );

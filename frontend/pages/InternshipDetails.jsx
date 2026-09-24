@@ -23,62 +23,105 @@ function InternshipDetails() {
     }, [id]);
 
 
-const handleApply = async () => {
+    const handleApply = async () => {
 
-    console.log("Apply button clicked");
+        console.log("Apply button clicked");
 
-    const token = localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
-    console.log("Token:", token);
+        console.log("Token:", token);
 
-    try {
+        try {
 
-        const response = await axios.post(
-            `http://localhost:5000/api/applications/${id}`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`
+            const response = await axios.post(
+                `http://localhost:5000/api/applications/${id}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
                 }
-            }
-        );
+            );
 
-       console.log(response.data)
+            window.alert("Application submitted successfully!");
 
-    } catch (error) {
+            console.log(
+                "Application response:",
+                response.data
+            );
 
-        console.log("Application error:", error);
-        console.log("Error response:", error.response?.data);
+        } catch (error) {
 
-    }
-};
+            console.log(
+                "Application error:",
+                error
+            );
+
+            console.log(
+                "Error response:",
+                error.response?.data
+            );
+        }
+    };
 
 
     if (!internship) {
-        return <p>Loading...</p>;
+        return (
+            <div className="min-h-screen flex items-center justify-center">
+                <p className="text-gray-600 text-lg">
+                    Loading...
+                </p>
+            </div>
+        );
     }
 
 
     return (
 
-        <div>
+        <div className="min-h-screen bg-gray-100 p-8">
 
-            <h1>{internship.title}</h1>
+            <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow">
 
-            <p>
-                Company: {internship.company}
-            </p>
+                <h1 className="text-3xl font-bold mb-6">
+                    {internship.title}
+                </h1>
 
-            <p>
-                Location: {internship.location}
-            </p>
+                <div className="space-y-4">
 
-            <button onClick={handleApply}>
-                Apply
-            </button>
+                    <div>
+                        <p className="text-gray-500">
+                            Company
+                        </p>
+
+                        <p className="text-lg font-semibold">
+                            {internship.company}
+                        </p>
+                    </div>
+
+
+                    <div>
+                        <p className="text-gray-500">
+                            Location
+                        </p>
+
+                        <p className="text-lg font-semibold">
+                            {internship.location}
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <button
+                    onClick={handleApply}
+                    className="mt-8 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700"
+                >
+                    Apply for Internship
+                </button>
+
+            </div>
 
         </div>
-
     );
 }
 

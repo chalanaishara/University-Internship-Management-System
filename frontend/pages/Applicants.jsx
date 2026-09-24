@@ -70,41 +70,66 @@ function Applicants() {
 
 
     return (
-        <div>
+        <div className="min-h-screen bg-gray-100 p-8">
 
-            <h1>Applicants</h1>
+            <h1 className="text-3xl font-bold mb-6">
+                Applicants
+            </h1>
 
-            {applications.map(application => (
+            <div className="grid gap-4">
 
-                <div key={application._id}>
+                {applications.map(application => (
 
-                    <h2>
-                        {application.student.name}
-                    </h2>
-
-                    <p>
-                        Email: {application.student.email}
-                    </p>
-
-                    <p>
-                        Status: {application.status}
-                    </p>
-
-                    <button
-                        onClick={() =>updateStatus(application._id,"selected")}
+                    <div
+                        key={application._id}
+                        className="bg-white p-6 rounded-xl shadow"
                     >
-                        Select
-                    </button>
 
-                    <button
-                        onClick={() =>updateStatus(application._id,"rejected")}
-                    >
-                        Reject
-                    </button>
+                        <h2 className="text-xl font-semibold">
+                            {application.student.name}
+                        </h2>
 
-                </div>
+                        <p className="text-gray-600 mt-2">
+                            Email: {application.student.email}
+                        </p>
 
-            ))}
+                        <p className="my-4">
+                            Status:
+
+                            <span className="ml-2 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
+                                {application.status}
+                            </span>
+                        </p>
+
+                        <button
+                            onClick={() =>
+                                updateStatus(
+                                    application._id,
+                                    "selected"
+                                )
+                            }
+                            className="bg-green-600 text-white px-4 py-2 rounded-lg mr-2 hover:bg-green-700"
+                        >
+                            Select
+                        </button>
+
+                        <button
+                            onClick={() =>
+                                updateStatus(
+                                    application._id,
+                                    "rejected"
+                                )
+                            }
+                            className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700"
+                        >
+                            Reject
+                        </button>
+
+                    </div>
+
+                ))}
+
+            </div>
 
         </div>
     );
