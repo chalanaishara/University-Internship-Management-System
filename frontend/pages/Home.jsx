@@ -19,11 +19,9 @@ function Home() {
 
     }, []);
 
-    const filteredInternships = internships.filter(internship =>
-        internship.title
-            .toLowerCase()
-            .includes(search.toLowerCase())
-    );
+   const filteredInternships = internships.filter(internship =>
+    internship.title?.toLowerCase().includes(search.toLowerCase())
+);
 
     return (
         <div className="min-h-screen bg-gray-100 p-8">

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
 
@@ -8,6 +8,7 @@ function Login() {
     const [password, setPassword] = useState("");
 
     const navigate = useNavigate();
+
 
     const handleLogin = async (e) => {
 
@@ -23,24 +24,55 @@ function Login() {
                 }
             );
 
+
+            // Save JWT
             localStorage.setItem(
                 "token",
                 response.data.token
             );
 
-            window.alert("Login successful");
 
-            navigate("/");
+            // Decode JWT
+            const token = response.data.token;
+
+            const payload = JSON.parse(
+                atob(token.split(".")[1])
+            );
+
+
+            // Get role
+            const role = payload.role;
+
+            console.log("Login successful");
+            console.log("Role:", role);
+
+
+            // Redirect according to role
+            if (role === "company") {
+
+                navigate("/company/dashboard");
+
+            } else if (role === "student") {
+
+                navigate("/");
+
+            }
+
 
         } catch (error) {
 
-            console.log(error);
+            console.log("Login error:", error);
+            console.log(
+                "Error response:",
+                error.response?.data
+            );
 
         }
     };
 
 
     return (
+
         <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
 
             <div className="bg-white w-full max-w-md p-8 rounded-xl shadow">
@@ -48,6 +80,7 @@ function Login() {
                 <h1 className="text-3xl font-bold text-center mb-6">
                     Login
                 </h1>
+
 
                 <form onSubmit={handleLogin}>
 
@@ -69,6 +102,7 @@ function Login() {
 
                     </div>
 
+
                     <div className="mb-6">
 
                         <label className="block mb-2 font-medium">
@@ -86,6 +120,7 @@ function Login() {
                         />
 
                     </div>
+
 
                     <button
                         type="submit"

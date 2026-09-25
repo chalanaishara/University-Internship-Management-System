@@ -113,6 +113,15 @@ function MyInternships() {
                                 Delete
                                 </button>
 
+                                <button
+                                    onClick={() =>
+                                    navigate(`/applicants/${internship._id}`)
+                                    }
+                                    className="bg-purple-600 text-white px-4 py-2 rounded-lg"
+                                    >
+                                     View Applicants
+                                    </button>
+
                             </div>
 
                         </div>

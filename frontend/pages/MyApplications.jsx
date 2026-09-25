@@ -35,37 +35,42 @@ function MyApplications() {
 
             <div className="grid gap-4">
 
-                {applications.map(application => (
+               {applications.map(application => {
 
-                    <div
-                        key={application._id}
-                        className="bg-white p-6 rounded-xl shadow"
-                    >
+    if (!application.internship) {
+        return null;
+    }
 
-                        <h2 className="text-xl font-semibold mb-2">
-                            {application.internship.title}
-                        </h2>
+    return (
+        <div
+            key={application._id}
+            className="bg-white p-6 rounded-xl shadow"
+        >
 
-                        <p className="text-gray-600">
-                            Company: {application.internship.company}
-                        </p>
+            <h2 className="text-xl font-semibold mb-2">
+                {application.internship.title}
+            </h2>
 
-                        <p className="text-gray-600">
-                            Location: {application.internship.location}
-                        </p>
+            <p className="text-gray-600">
+                Company: {application.internship.company}
+            </p>
 
-                        <p className="mt-4">
-                            Status:
+            <p className="text-gray-600">
+                Location: {application.internship.location}
+            </p>
 
-                            <span className="ml-2 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
-                                {application.status}
-                            </span>
+            <p className="mt-4">
+                Status:
 
-                        </p>
+                <span className="ml-2 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700">
+                    {application.status}
+                </span>
 
-                    </div>
+            </p>
 
-                ))}
+        </div>
+    );
+})}
 
             </div>
 

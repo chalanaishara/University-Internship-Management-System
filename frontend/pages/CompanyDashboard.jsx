@@ -18,6 +18,7 @@ function CompanyDashboard() {
 
                 <div className="grid md:grid-cols-3 gap-6">
 
+
                     {/* Add Internship */}
 
                     <div className="bg-white p-6 rounded-xl shadow">
@@ -71,16 +72,18 @@ function CompanyDashboard() {
                         </h2>
 
                         <p className="text-gray-600 mb-5">
-                            View students who applied for your internships.
+                            Select an internship to view its applicants.
                         </p>
 
-                        <button
-                            className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+                        <Link
+                            to="/company/internships"
+                            className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
                         >
                             View Applicants
-                        </button>
+                        </Link>
 
                     </div>
+
 
                 </div>
 

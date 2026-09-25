@@ -1,4 +1,4 @@
-import {BrowserRouter,Routes,Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "../pages/Home.jsx";
 import Register from "../pages/Register.jsx";
@@ -11,63 +11,95 @@ import CompanyDashboard from "../pages/CompanyDashboard.jsx";
 import AddInternship from "../pages/AddInternship.jsx";
 import MyInternships from "../pages/MyInternships.jsx";
 import EditInternship from "../pages/EditInternships.jsx";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
     return (
         <BrowserRouter>
-        <h1 className="text-3xl font-bold underline text-center my-4 text-blue-600">
-            <Navbar title="University Internship System" />
-        </h1>   
-             <Routes>
+
+            <h1 className="text-3xl font-bold underline text-center my-4 text-blue-600">
+                <Navbar title="University Internship System" />
+            </h1>
+
+            <Routes>
 
                 <Route
                     path="/"
-                    element={<Home/>}
+                    element={<Home />}
                 />
 
                 <Route
                     path="/login"
-                    element={<Login/>}
+                    element={<Login />}
                 />
 
                 <Route
                     path="/register"
-                    element={<Register/>}
+                    element={<Register />}
                 />
 
                 <Route
                     path="/internship/:id"
-                    element={<InternshipDetails/>}
+                    element={
+                    <ProtectedRoute role="student">
+                    <InternshipDetails />
+                    </ProtectedRoute>
+                    }
                 />
 
+                {/* Protected Student Route */}
                 <Route
                     path="/my-applications"
-                    element={<MyApplications/>}
+                    element={
+                        <ProtectedRoute role="student">
+                            <MyApplications />
+                        </ProtectedRoute>
+                    }
                 />
 
-                <Route
+               <Route
                     path="/applicants/:internshipId"
-                    element={<Applicants/>}
+                    element={
+                    <ProtectedRoute role="company">
+                    <Applicants />
+                    </ProtectedRoute>
+                    }
                 />
 
                 <Route
                     path="/company/dashboard"
-                    element={<CompanyDashboard/>}
+                    element={
+                    <ProtectedRoute role="company">
+                    <CompanyDashboard />
+                    </ProtectedRoute>
+                    }
                 />
 
                 <Route
                     path="/company/add-internship"
-                    element={<AddInternship />}
+                    element={
+                    <ProtectedRoute role="company">
+                    <AddInternship />
+                    </ProtectedRoute>
+                    }
                 />
-                
+
                 <Route
                     path="/company/internships"
-                    element={<MyInternships />}
+                    element={
+                    <ProtectedRoute role="company">
+                    <MyInternships />
+                    </ProtectedRoute>
+                    }
                 />
 
                 <Route
                     path="/company/internships/edit/:id"
-                    element={<EditInternship />}
+                    element={
+                    <ProtectedRoute role="company">
+                    <EditInternship />
+                    </ProtectedRoute>
+                    }
                 />
 
             </Routes>

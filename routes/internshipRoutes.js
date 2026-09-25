@@ -10,16 +10,43 @@ const {
     deleteInternship
 } = require("../controllers/internshipController");
 
+const protect = require("../middleware/authMiddleware");
+const checkRole = require("../middleware/roleMiddleware");
 
-router.post("/", createInternship);
 
-router.get("/", getInternships);
+router.post(
+    "/",
+    protect,
+     checkRole("company"),
+    createInternship
+);
 
-router.get("/:id", getInternship);
 
-router.put("/:id", updateInternship);
+router.get(
+    "/",
+    getInternships
+);
 
-router.delete("/:id", deleteInternship);
+
+router.get(
+    "/:id",
+    getInternship
+);
+
+
+router.put(
+    "/:id",
+    protect,
+    checkRole("company"),
+    updateInternship
+);
+
+
+router.delete(
+    "/:id",
+    protect,
+    deleteInternship
+);
 
 
 module.exports = router;
