@@ -21,8 +21,10 @@ const registerUser = async (req, res) => {
         });
 
     } catch (error) {
+        console.error("REGISTER ERROR:", error);
         res.status(500).json({
-            message: "Registration failed"
+            message: "Registration failed",
+            error: error.message
         });
     }
 };
@@ -68,11 +70,13 @@ const loginUser = async (req, res) => {
         });
 
     } catch (error) {
+        console.error("LOGIN ERROR:", error);
         res.status(500).json({
-            message: "Login failed"
+            message: "Login failed",
+            error: error.message
         });
     }
 };
 
 
-module.exports = { registerUser,loginUser};
+module.exports = { registerUser, loginUser };
