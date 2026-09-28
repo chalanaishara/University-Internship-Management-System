@@ -27,10 +27,13 @@ app.get("/api/auth/profile",protect,(req,res)=>{
 
 });
 
+if (require.main === module) {
+    app.listen(process.env.PORT || 5000, () => {
+        console.log("server is running on port " + (process.env.PORT || 5000));
+    });
+}
 
-app.listen(process.env.PORT || 5000,()=>{
-    console.log("server is running on port " + (process.env.PORT || 5000));
-});
+module.exports = app;
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
