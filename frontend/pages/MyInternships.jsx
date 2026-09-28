@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function MyInternships() {
 
@@ -48,11 +49,13 @@ function MyInternships() {
         );
 
         console.log("Internship deleted successfully");
+        toast.success("Internship deleted successfully");
 
     } catch (error) {
 
         console.log("Delete error:", error);
         console.log("Error response:", error.response?.data);
+        toast.error("Failed to delete internship");
 
     }
 };

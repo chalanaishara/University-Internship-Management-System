@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Register() {
     const navigate = useNavigate();
@@ -27,10 +28,12 @@ function Register() {
             );
 
             console.log("Registration successful");
+            toast.success("Registration successful. Please login.");
             console.log(response.data);
             navigate("/login");
 
         } catch (error) {
+            toast.error("Registration failed. Please try again.");
 
             console.log(error);
 
@@ -134,6 +137,20 @@ function Register() {
                     >
                         Register
                     </button>
+
+                     <p className="text-center mt-4 text-gray-600">
+                      If you already have an account, please{" "}
+                      <button
+                        type="button"
+                        onClick={()=>navigate("/login")}
+                        className="text-blue-600 font-medium hover:underline"
+                        >
+                            Login
+                        </button>
+                        {" "}here.
+
+                    </p>
+
 
                 </form>
 

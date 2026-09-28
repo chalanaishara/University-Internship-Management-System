@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Login() {
 
@@ -45,6 +46,7 @@ function Login() {
 
             console.log("Login successful");
             console.log("Role:", role);
+            toast.success("Login successful");
 
 
             // Redirect according to role
@@ -64,7 +66,8 @@ function Login() {
             console.log("Login error:", error);
             console.log(
                 "Error response:",
-                error.response?.data
+                error.response?.data,
+                toast .error ("Invalid email or password")
             );
 
         }
@@ -129,12 +132,28 @@ function Login() {
                         Login
                     </button>
 
+                    <p className="text-center mt-4 text-gray-600">
+                      If you don't have an account, please{" "}
+                      <button
+                        type="button"
+                        onClick={()=>navigate("/register")}
+                        className="text-blue-600 font-medium hover:underline"
+                        >
+                            Register
+                        </button>
+                        {" "}first.
+
+                    </p>
+
                 </form>
 
             </div>
 
+
         </div>
+
     );
+     
 }
 
 export default Login;

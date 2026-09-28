@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function InternshipDetails() {
 
@@ -43,7 +44,7 @@ function InternshipDetails() {
                 }
             );
 
-            window.alert("Application submitted successfully!");
+            toast.success("Application submitted successfully!");
 
             console.log(
                 "Application response:",

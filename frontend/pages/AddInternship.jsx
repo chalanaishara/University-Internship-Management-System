@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function AddInternship() {
 
@@ -30,6 +31,7 @@ function AddInternship() {
             );
 
             console.log("Internship added:", response.data);
+            toast.success("Internship added successfully!");
 
             // Clear form
             setTitle("");
@@ -40,6 +42,7 @@ function AddInternship() {
 
             console.log("Error adding internship:", error);
             console.log("Error response:", error.response?.data);
+            toast.error("Failed to add internship. Please try again.");
 
         }
     };

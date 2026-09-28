@@ -12,10 +12,14 @@ import AddInternship from "../pages/AddInternship.jsx";
 import MyInternships from "../pages/MyInternships.jsx";
 import EditInternship from "../pages/EditInternships.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { Toaster } from "react-hot-toast";
 
 function App() {
     return (
         <BrowserRouter>
+
+        <Toaster position="top-right" />
+        {/* alert ena widiha */}
 
             <h1 className="text-3xl font-bold underline text-center my-4 text-blue-600">
                 <Navbar title="University Internship System" />
