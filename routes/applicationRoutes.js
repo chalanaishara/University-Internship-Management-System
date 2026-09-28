@@ -9,7 +9,7 @@ const checkRole = require("../middleware/roleMiddleware");
 
 router.post("/:internshipId",protect, checkRole("student"), applyForInternship);
 router.get("/my", protect, getMyApplications);
-router.get("/internship/:internshipId", protect, checkRole("student"), getApplicants);
-router.put("/:applicationId/status", protect, checkRole("student"), updateApplicationStatus);
+router.get("/internship/:internshipId", protect, checkRole("company"), getApplicants);
+router.put("/:applicationId/status", protect, checkRole("company"), updateApplicationStatus);
 
 module.exports = router;
