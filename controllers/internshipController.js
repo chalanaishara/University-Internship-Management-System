@@ -1,4 +1,4 @@
-const Internship = require("../models/Internship");
+const Internship = require("../models/internship");
 
 const createInternship = async (req, res) => {
     try {
