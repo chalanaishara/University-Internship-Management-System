@@ -64,12 +64,9 @@ function Login() {
         } catch (error) {
 
             console.log("Login error:", error);
-            console.log(
-                "Error response:",
-                error.response?.data,
-                toast .error ("Invalid email or password")
-            );
-
+            console.log("Error response:",error.response?.data?.message);
+            
+            toast .error ("Invalid email or password");
         }
     };
 

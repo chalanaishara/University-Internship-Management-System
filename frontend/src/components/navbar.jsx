@@ -112,12 +112,7 @@ function Navbar() {
                                 Dashboard
                             </Link>
 
-                            <Link
-                                to="/company/internships"
-                                className="hover:text-blue-200 transition"
-                            >
-                                My Internships
-                            </Link>
+                           
                         </>
                     )}
 
@@ -133,7 +128,18 @@ function Navbar() {
                         </button>
                     )}
 
+                              {/* profile */}
+
+                    <Link
+                        to="/profile"
+                        className="hover:text-blue-200 transition"
+                    >
+                        MyProfile
+                    </Link>
+
                 </div>
+
+                
 
             </div>
 

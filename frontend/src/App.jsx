@@ -12,7 +12,9 @@ import AddInternship from "../pages/AddInternship.jsx";
 import MyInternships from "../pages/MyInternships.jsx";
 import EditInternship from "../pages/EditInternships.jsx";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "../pages/Profile.jsx";
 import { Toaster } from "react-hot-toast";
+import EditUser from "../pages/EditUser.jsx";
 
 function App() {
     return (
@@ -105,6 +107,21 @@ function App() {
                     </ProtectedRoute>
                     }
                 />
+
+                <Route 
+                    path="/profile"
+                    element={
+                        <ProtectedRoute>
+                            <Profile />
+                        </ProtectedRoute>
+                    }
+                />
+
+                <Route
+                    path="/update"
+                    element={<EditUser/>}
+                />
+
 
             </Routes>
 

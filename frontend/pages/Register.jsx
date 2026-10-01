@@ -10,6 +10,7 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [role, setRole] = useState("student");
+    const [mobile,setMobile]=useState("");
 
     const handleRegister = async (e) => {
 
@@ -23,7 +24,8 @@ function Register() {
                     name,
                     email,
                     password,
-                    role
+                    role,
+                    mobile
                 }
             );
 
@@ -128,6 +130,24 @@ function Register() {
                             </option>
 
                         </select>
+
+                    </div>
+
+                    <div className="mb-4">
+
+                        <label className="block mb-2 font-medium">
+                            mobile
+                        </label>
+
+                        <input
+                            type="phone"
+                            value={mobile}
+                            onChange={(e) =>
+                                setMobile(e.target.value)
+                            }
+                            placeholder="Enter your mobile Number"
+                            className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
 
                     </div>
 
