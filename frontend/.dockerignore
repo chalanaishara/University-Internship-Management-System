@@ -1,0 +1,34 @@
+# 1. Dependencies (Container එක ඇතුළේ 'npm install' එකෙන් හැදෙන නිසා COPY වෙන්න ඕන නෑ)
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 2. Environment Variables (ආරක්ෂාව සඳහා - Passwords / Secrets Leak වීම වැළැක්වීමට)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 3. Build Outputs (Local එකේ තිබෙන Build ෆෝල්ඩර්ස්)
+dist
+build
+
+# 4. Git Version Control Files
+.git
+.gitignore
+
+# 5. Docker Files (Image එක ඇතුළට Copy වීම අවශ්‍ය නැත)
+Dockerfile
+.dockerignore
+docker-compose*.yml
+
+# 6. Code Editors / IDE Files (VS Code / WebStorm Settings)
+.vscode
+.idea
+*.swp
+
+# 7. OS Generated Files (Windows / Mac Temp Files)
+.DS_Store
+Thumbs.db

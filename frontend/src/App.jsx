@@ -44,7 +44,7 @@ function App() {
                     element={<Register />}
                 />
 
-                <Route
+                 <Route
                     path="/internship/:id"
                     element={
                     <ProtectedRoute role="student">
@@ -52,6 +52,15 @@ function App() {
                     </ProtectedRoute>
                     }
                 />
+
+                <Route
+                    path="/company/applicants"
+                    element={
+                    <ProtectedRoute role="company">
+                     <Applicants />
+                        </ProtectedRoute>
+                    }
+                /> 
 
                 {/* Protected Student Route */}
                 <Route
@@ -71,6 +80,8 @@ function App() {
                     </ProtectedRoute>
                     }
                 />
+
+                
 
                 <Route
                     path="/company/dashboard"
@@ -120,6 +131,11 @@ function App() {
                 <Route
                     path="/update"
                     element={<EditUser/>}
+                />
+
+                <Route
+                    path="/applicants/:internshipId"
+                    element={<Applicants />}
                 />
 
 

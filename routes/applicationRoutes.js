@@ -4,7 +4,7 @@ const router = express.Router();
 
 const {applyForInternship,getMyApplications,getApplicants,updateApplicationStatus} = require("../controllers/applicationController");
 
-const protect = require("../middleware/authMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 const checkRole = require("../middleware/roleMiddleware");
 
 router.post("/:internshipId",protect, checkRole("student"), applyForInternship);

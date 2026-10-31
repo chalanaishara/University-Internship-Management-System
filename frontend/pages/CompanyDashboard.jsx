@@ -75,12 +75,12 @@ function CompanyDashboard() {
                             Select an internship to view its applicants.
                         </p>
 
-                        <Link
-                            to="/company/internships"
-                            className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
+                      <Link
+                        to="/company/applicants"
+                        className="inline-block bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"
                         >
-                            View Applicants
-                        </Link>
+                         View Applicants
+                    </Link>
 
                     </div>
 

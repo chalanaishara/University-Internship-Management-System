@@ -1,52 +1,41 @@
-const express = require("express");
 
+const express = require("express");
 const router = express.Router();
 
 const {
     createInternship,
     getInternships,
+    getMyInternships,
     getInternship,
     updateInternship,
     deleteInternship
 } = require("../controllers/internshipController");
 
-const protect = require("../middleware/authMiddleware");
-const checkRole = require("../middleware/roleMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 
 
-router.post(
-    "/",
-    protect,
-     checkRole("company"),
-    createInternship
-);
+// Company - Get own internships
+router.get("/my", protect, getMyInternships);
 
 
-router.get(
-    "/",
-    getInternships
-);
+// Student - Get all published internships
+router.get("/", getInternships);
 
 
-router.get(
-    "/:id",
-    getInternship
-);
+// Company - Create internship
+router.post("/", protect, createInternship);
 
 
-router.put(
-    "/:id",
-    protect,
-    checkRole("company"),
-    updateInternship
-);
+// Get single internship
+router.get("/:id", getInternship);
 
 
-router.delete(
-    "/:id",
-    protect,
-    deleteInternship
-);
+// Company - Update internship
+router.put("/:id", protect, updateInternship);
+
+
+// Company - Delete internship
+router.delete("/:id", protect, deleteInternship);
 
 
 module.exports = router;
